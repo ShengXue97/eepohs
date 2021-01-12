@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/eepohs/static/css/main.7d180cbf.chunk.css",
-    "main.js": "/eepohs/static/js/main.54032be4.chunk.js",
-    "main.js.map": "/eepohs/static/js/main.54032be4.chunk.js.map",
+    "main.js": "/eepohs/static/js/main.0d926688.chunk.js",
+    "main.js.map": "/eepohs/static/js/main.0d926688.chunk.js.map",
     "runtime-main.js": "/eepohs/static/js/runtime-main.c6f81c66.js",
     "runtime-main.js.map": "/eepohs/static/js/runtime-main.c6f81c66.js.map",
     "static/js/2.abd85628.chunk.js": "/eepohs/static/js/2.abd85628.chunk.js",
@@ -30,6 +30,6 @@
     "static/css/3.ae9f1eb3.chunk.css",
     "static/js/3.b74a01d3.chunk.js",
     "static/css/main.7d180cbf.chunk.css",
-    "static/js/main.54032be4.chunk.js"
+    "static/js/main.0d926688.chunk.js"
   ]
 }
