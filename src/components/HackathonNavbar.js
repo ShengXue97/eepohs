@@ -9,7 +9,8 @@ const HackathonNavbar = props =>
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="mr-auto">
         <Nav.Link href="#home">Compare products</Nav.Link>
-        <Nav.Link href="#credits">Credits</Nav.Link>
+        <Nav.Link href="#metrics">Edit metrics</Nav.Link>
+        <Nav.Link href="#credits">About</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>;
