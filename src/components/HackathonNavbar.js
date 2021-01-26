@@ -4,7 +4,7 @@ import { Button, ButtonGroup, Navbar, NavDropdown, Nav, ToggleButton } from 'rea
 
 const HackathonNavbar = props =>
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-    <Navbar.Brand href="#home">Shopee Ultra Hackathon</Navbar.Brand>
+    <Navbar.Brand href="#home">Compare products</Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="mr-auto">
