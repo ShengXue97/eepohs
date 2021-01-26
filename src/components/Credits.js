@@ -3,22 +3,14 @@ import React, { Component } from 'react'
 import MaterialTable from 'material-table'
 import { Button, Navbar, NavDropdown, Nav } from 'react-bootstrap'
 import { HashRouter, Route } from 'react-router-dom';
+import HackathonNavbar from './HackathonNavbar';
 
 export default class Credits extends Component {
   
   render() {
     return (
       <div className="Credits">
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home">Shopee Ultra Hackathon</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="#home">Compare products</Nav.Link>
-              <Nav.Link href="#credits">Credits</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+        <HackathonNavbar />
 
         <h3 style = {{ textAlign: "left", margin: "10px" }}> 
           Credits: 
