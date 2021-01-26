@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table'
-import { Button, ButtonGroup, Navbar, NavDropdown, Nav, ToggleButton, Modal } from 'react-bootstrap'
+import { Button, ButtonGroup, ToggleButton, Modal } from 'react-bootstrap'
 import { HashRouter, Route } from 'react-router-dom';
 import HackathonNavbar from './HackathonNavbar';
 
@@ -43,6 +43,7 @@ function Home() {
         tProductRating(!productRating); break;
       case "sellerRating":
         tSellerRating(!sellerRating); break;
+      default: break;
     }
   }
 
@@ -60,6 +61,7 @@ function Home() {
         tmProductRating(!mProductRating); break;
       case "mSellerRating":
         tmSellerRating(!mSellerRating); break;
+      default: break;
     }
   }
 
