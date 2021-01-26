@@ -38,6 +38,7 @@ function ProductSelection() {
         {searchItems.map((searchItem) => (
           <div>{searchItem.name}</div>
         ))}
+      </div>
     </div>
   );
 }
