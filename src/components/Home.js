@@ -3,9 +3,10 @@ import React, { Component } from 'react'
 import MaterialTable from 'material-table'
 import { Button, ButtonGroup, Navbar, NavDropdown, Nav, ToggleButton } from 'react-bootstrap'
 import { HashRouter, Route } from 'react-router-dom';
+import Media from 'react-media';
 
 export default class Home extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       "hideName": false,
@@ -19,34 +20,38 @@ export default class Home extends Component {
   }
 
   togglePrice = () => {
-    this.setState({"hidePrice": !this.state.hidePrice})
+    this.setState({ "hidePrice": !this.state.hidePrice })
   }
 
   toggleReview = () => {
-    this.setState({"hideReview": !this.state.hideReview})
+    this.setState({ "hideReview": !this.state.hideReview })
   }
 
   togglePhoto = () => {
-    this.setState({"hidePhoto": !this.state.hidePhoto})
+    this.setState({ "hidePhoto": !this.state.hidePhoto })
   }
 
   toggleShipping = () => {
-    this.setState({"hideShipping": !this.state.hideShipping})
+    this.setState({ "hideShipping": !this.state.hideShipping })
   }
 
   toggleProductRating = () => {
-    this.setState({"hideProductRating": !this.state.hideProductRating})
+    this.setState({ "hideProductRating": !this.state.hideProductRating })
   }
 
   toggleSellerRating = () => {
-    this.setState({"hideSellerRating": !this.state.hideSellerRating})
+    this.setState({ "hideSellerRating": !this.state.hideSellerRating })
   }
 
   render() {
     return (
       <div className="Home">
+
+        <Media queries={{ small: { maxWidth: 599 } }}>
+          {window => window.small ? (
+            <div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home">Shopee Ultra Hackathon</Navbar.Brand>
+          <Navbar.Brand href="#home">Compare Products</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
@@ -56,7 +61,7 @@ export default class Home extends Component {
           </Navbar.Collapse>
         </Navbar>
 
-        <h3 style = {{ textAlign: "left", marginLeft: "10px" }}> Compare By: </h3>
+        <h4 style = {{ textAlign: "left", margin: "10px 0 10px 15px", color: 'orange' }}> Compare By: </h4>
 
         <div style = {{display: "flex", flexDirection: "row", justifyContent: "flex-start", marginLeft:'10px'}}>
         <ToggleButton onClick = {() => this.togglePrice()} type="checkbox" checked = {!this.state.hidePrice} variant="primary">Prices</ToggleButton>
@@ -94,8 +99,11 @@ export default class Home extends Component {
             title="Product Comparison"
           />
         </div>
-
-        
+          </div>
+          ) : (
+              <div> Desktop UI </div>
+            )}
+        </Media>
       </div>
     );
   }
