@@ -1,0 +1,37 @@
+.line1 {
+    width: 3%;
+    height: 2%;
+    border-bottom: 1px solid #FF6633;
+    -webkit-transform:
+        translateY(0%)
+        translateX(-5%)
+        rotate(45deg); 
+    position: absolute;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color:  #FF6633;
+    /* top: -20px; */
+}
+
+img { 
+    max-width: 100%;
+    max-height: 100%;
+    display: block; /* remove extra space below image */
+    
+}
+
+/* Container holding the image and the text */
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+  
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FF6633;
+}
