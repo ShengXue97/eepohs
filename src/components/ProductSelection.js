@@ -23,6 +23,7 @@ function ProductSelection() {
   React.useEffect(() => {
     (async () => {
       const getInfoResponse = await get(`${consts.API_URL}item/get_info`, {
+        item_id: 7327319319,
         shop_id: 92567513,
       });
       console.log(getInfoResponse);
