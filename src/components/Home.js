@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import MaterialTable from 'material-table'
 import { Button, ButtonGroup, Navbar, NavDropdown, Nav, ToggleButton } from 'react-bootstrap'
 import { HashRouter, Route } from 'react-router-dom';
+import HackathonNavbar from './HackathonNavbar';
 
 export default class Home extends Component {
   constructor(props){
@@ -45,16 +46,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home">Shopee Ultra Hackathon</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="#home">Compare products</Nav.Link>
-              <Nav.Link href="#credits">Credits</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+        <HackathonNavbar />
 
         <h3 style = {{ textAlign: "left", marginLeft: "10px" }}> Compare By: </h3>
 
