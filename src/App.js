@@ -15,9 +15,9 @@ function App() {
   return (
     <HashRouter basename="/">
       <div>
-        <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/credits" component={Credits} />
+        <Route exact path="/" component={Home} />
       </div>
     </HashRouter>
   );
