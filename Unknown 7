@@ -1,0 +1,263 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Tutorial 3 - Demo"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Encryption & Decryption using a Stream Cipher - ChaCha20"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Install a standard library\n",
+    "https://pycryptodome.readthedocs.io/en/latest/src/installation.html"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "!pip3 install pycryptodome"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import binascii\n",
+    "from Crypto.Cipher import ChaCha20\n",
+    "from Crypto.Random import get_random_bytes"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Select a random key"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "key = get_random_bytes(32)\n",
+    "print(binascii.hexlify(key))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## PART 1"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "plaintext = 'This is Tutorial 3 of CS3235'\n",
+    "print(binascii.hexlify(plaintext))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Encrypt the plaintext message using the key"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "cipher = ChaCha20.new(key=key)\n",
+    "ciphertext = cipher.encrypt(plaintext)\n",
+    "print(binascii.hexlify(ciphertext))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Decrypt the ciphertext using the key"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "try:\n",
+    "    cipher = ChaCha20.new(key=key, nonce=cipher.nonce)\n",
+    "    plaintext = cipher.decrypt(ciphertext)\n",
+    "    print(\"The plaintext message was \" + plaintext)\n",
+    "except ValueError, KeyError:\n",
+    "    print(\"Incorrect decryption\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## PART 2\n",
+    "Lets encrypt a file using the same Stream Cipher"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "file_name = 'Sample_file.txt'\n",
+    "buffer_size = 65536 # 64 kb"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Encryption"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "in_file = open(file_name, 'rb')\n",
+    "out_file = open(file_name + '.encrypt', 'wb')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "encrypt_cipher = ChaCha20.new(key=key)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "buffer = in_file.read(buffer_size)\n",
+    "while len(buffer) > 0:\n",
+    "    encrypted_bytes = encrypt_cipher.encrypt(buffer)\n",
+    "    out_file.write(encrypted_bytes)\n",
+    "    buffer = in_file.read(buffer_size)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "in_file.close()\n",
+    "out_file.close()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Decryption"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "in_file = open(file_name + '.encrypt', 'rb')\n",
+    "out_file = open(file_name + '.decrypt', 'wb')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "decrypt_cipher = ChaCha20.new(key=key,nonce=encrypt_cipher.nonce)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "buffer = in_file.read(buffer_size)\n",
+    "while len(buffer) > 0:\n",
+    "    decrypted_bytes = decrypt_cipher.decrypt(buffer)\n",
+    "    out_file.write(decrypted_bytes)\n",
+    "    buffer = in_file.read(buffer_size)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "in_file.close()\n",
+    "out_file.close()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Play around by changing the contents of the plain text message and the sample file"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.17"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}
